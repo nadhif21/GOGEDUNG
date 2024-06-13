@@ -24,23 +24,32 @@ $tanggal_pemesanan_db_format = DateTime::createFromFormat('d M', $tanggal_pemesa
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if (isset($_POST['confirm'])) {
-        $stmt = $koneksi->prepare("DELETE FROM pemesanan WHERE pemesanan_id = ? AND user_id = ? AND tanggal_pemesanan = ? AND jumlah_pembayaran = ? AND status = ?");
-        $stmt->bind_param("iisds", $pemesanan_id, $user_id, $tanggal_pemesanan_db_format, $jumlah_pembayaran, $status);
+        if ($_POST['confirm'] == 'yes') {
+            // Lakukan penghapusan data
+            $stmt = $koneksi->prepare("DELETE FROM pemesanan WHERE pemesanan_id = ? AND user_id = ? AND tanggal_pemesanan = ? AND jumlah_pembayaran = ? AND status = ?");
+            $stmt->bind_param("iisds", $pemesanan_id, $user_id, $tanggal_pemesanan_db_format, $jumlah_pembayaran, $status);
 
-        if ($stmt->execute()) {
-            echo "Pemesanan berhasil dihapus.";
+            if ($stmt->execute()) {
+                echo "Pemesanan berhasil dihapus.";
+                header("Location: pesanan.php");
+                exit();
+            } else {
+                echo "Error: " . $stmt->error;
+            }
+
+            $stmt->close();
+        } elseif ($_POST['confirm'] == 'no') {
+            // Redirect kembali ke pesanan.php jika pengguna memilih "Tidak"
             header("Location: pesanan.php");
             exit();
-        } else {
-            echo "Error: " . $stmt->error;
         }
-
-        $stmt->close();
     } else {
+        // Jika tidak ada konfirmasi yang dikirimkan
         header("Location: pesanan.php");
         exit();
     }
 }
+
 ?>
 
 <!DOCTYPE html>

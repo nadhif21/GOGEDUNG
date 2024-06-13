@@ -30,8 +30,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             case "user":
                 header("location:user/homepage.php");
                 break;
-            case "Dep Adkor":
-                header("location:user/homepage.php");
+            case "pemilik":
+                header("location:pemilikgedung/home.php");
                 break;
             default:
                 $error_message = "Level user tidak dikenal.";

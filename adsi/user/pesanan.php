@@ -10,9 +10,10 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $error_message = '';
 
-$sql = "SELECT p.pemesanan_id, DATE_FORMAT(p.tanggal_pemesanan, '%d %M') as formatted_date, p.jumlah_pembayaran, u.name, p.status
+$sql = "SELECT p.pemesanan_id, DATE_FORMAT(p.tanggal_pemesanan, '%d %M') as formatted_date, p.jumlah_pembayaran, u.name, p.status, g.nama_gedung
         FROM pemesanan p 
         JOIN unit u ON p.user_id = u.user_id
+        JOIN gedung g ON p.pemesanan_id = g.pemesanan_id
         WHERE p.user_id = ?";
 $stmt = $koneksi->prepare($sql);
 $stmt->bind_param("i", $user_id);
@@ -64,27 +65,7 @@ $result = $stmt->get_result();
                 echo "<td>" . $counter . "</td>"; // Menampilkan nomor urut
                 echo "<td>" . htmlspecialchars($row["name"]) . "</td>";
                 echo "<td>" . $row["formatted_date"] . "</td>";
-
-                // Kondisi untuk kolom "Gedung"
-                $building = "";
-                switch ($row["pemesanan_id"]) {
-                    case 1:
-                        $building = "Dance";
-                        break;
-                    case 2:
-                        $building = "Olahraga";
-                        break;
-                    case 3:
-                        $building = "Gym";
-                        break;
-                    case 4:
-                        $building = "Pesta";
-                        break;
-                    default:
-                        $building = "Unknown";
-                        break;
-                }
-                echo "<td>" . $building . "</td>";
+                echo "<td>" . htmlspecialchars($row['nama_gedung']) . "</td>";
 
                 echo "<td>Rp. " . number_format($row["jumlah_pembayaran"], 0, ',', '.') . ",-</td>";
                 echo "<td>" . htmlspecialchars($row["status"]) . "</td>";

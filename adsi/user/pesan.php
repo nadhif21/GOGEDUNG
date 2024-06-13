@@ -7,12 +7,7 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
-if (!isset($_SESSION['pemesanan_id'])) {
-    echo "Pemesanan ID is not set.";
-    exit();
-}
-
-$pemesanan_id = $_SESSION['pemesanan_id'];
+$pemesanan_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 $user_id = $_SESSION['user_id'];
 
 $stmt = $koneksi->prepare("SELECT nama_gedung, harga, image FROM gedung WHERE pemesanan_id = ?");

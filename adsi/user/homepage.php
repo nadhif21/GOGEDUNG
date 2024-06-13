@@ -20,6 +20,7 @@
                 <li><a href="cari.php">CARI</a></li>
                 <li><a href="contact.php">CONTACTS</a></li>
                 <li><a href="pesanan.php">PEMESANAN</a></li>
+                <li><a href="../logout.php">KELUAR</a></li>
             </ul>
         </nav>
     </header>

@@ -1,14 +1,45 @@
+<?php
+session_start();
+include '../koneksi.php';
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+
+$id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+// Ensure ID is set and valid
+if ($id <= 0) {
+    echo "Invalid ID.";
+    exit;
+}
+
+// Fetch the existing data for the given ID
+$sql = "SELECT * FROM gedung WHERE pemesanan_id = $id";
+$result = $koneksi->query($sql);
+
+if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $nama_gedung = $row['nama_gedung'];
+    $harga = $row['harga'];
+    $detail = $row['detail'];
+} else {
+    echo "No data found for the given ID.";
+    exit;
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Go Gedung</title>
-    <link rel="stylesheet" href="../assets/css/cari.css">
+    <link rel="stylesheet" href="../assets/css/detaildance.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
-
 <body>
     <header class="sticky-header">
         <div class="logo">
@@ -29,58 +60,18 @@
     </section>
 
     <section class="containercontent">
-        <div class="grid">
-<<<<<<< HEAD
-        <?php
-// Include file koneksi
-include '../koneksi.php';
-
-// Query untuk mengambil data dari tabel gedung
-$sql = "SELECT * FROM gedung";
-$result = $koneksi->query($sql);
-
-// Iterasi hasil query dan tampilkan data
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        echo '<div class="gedung">';
-        // Ubah tipe data blob menjadi base64 untuk ditampilkan sebagai gambar
-        $imageData = base64_encode($row['image']);
-        echo '<img src="data:image/jpeg;base64,' . $imageData . '" alt="' . htmlspecialchars($row['nama_gedung']) . '" class="gallery-image">';
-        echo '<a href= "detail.php?id='. ($row['pemesanan_id']). '">' . htmlspecialchars($row['nama_gedung']).  '</a>';
-        echo '</div>';
-    }
-} else {
-    echo '<p>No data available</p>';
-}
-
-// Tutup koneksi
-$koneksi->close();
-?>
-
+        <div class="gedungdance" >
+            <?php  
+            $imageData = base64_encode($row['image']);
+            echo '<img src="data:image/jpeg;base64,' . $imageData . '" alt="Image 1" class="gallery-image">';?><br>
+            <h2><?php echo htmlspecialchars($row['nama_gedung']); ?></h2>
+            <p>
+                <?php echo nl2br(htmlspecialchars($row['detail'])); ?>
+            </p>
+            <?php echo '<a href= "pesan.php?id='. ($row['pemesanan_id']). '"> Pesan </a>' ?>
         </div>
     </section>
 
-=======
-            <div class="gedungdance">
-                <img src="../assets/image/gedungdance.png" alt="Image 1" class="gallery-image">
-                <a href="detaildance.php">gedung dance</a>
-            </div>
-            <div class="gedungolahraga">
-                <img src="../assets/image/gedungolahraga.png" alt="Image 2" class="gallery-image">
-                <a href="detailolahraga.php">gedung olahraga</a>
-            </div>
-            <div class="gedunggym">
-                <img src="../assets/image/gedunggym.png" alt="Image 3" class="gallery-image">
-                <a href="detailgym.php">gedung gym</a>
-            </div>
-            <div class="gedungpesta">
-                <img src="../assets/image/gedungpesta.png" alt="Image 4" class="gallery-image">
-                <a href="detailpesta.php">gedung pesta</a>
-            </div>
-        </div>
-    </section>
-
->>>>>>> f0945baba89b352414e96942c4e433ab0d97bce4
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-column">
@@ -117,8 +108,4 @@ $koneksi->close();
         </div>
     </footer>
 </body>
-<<<<<<< HEAD
-=======
-
->>>>>>> f0945baba89b352414e96942c4e433ab0d97bce4
 </html>

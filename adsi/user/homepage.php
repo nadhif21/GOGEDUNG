@@ -44,9 +44,9 @@
         <div class="about-text">
             <h3>About</h3>
             <p>
-                Pengembangan proyek sistem informasi Go Ged bertujuan untuk melakukan 
-                kerja sama dengan Gedung HYBE guna membantu pencatatan dan manajemen 
-                gedung dan instruktur yang lebih efisien, seperti pengelolaan pada data penyewaan, 
+                Pengembangan proyek sistem informasi Go Ged bertujuan untuk melakukan
+                kerja sama dengan Gedung HYBE guna membantu pencatatan dan manajemen
+                gedung dan instruktur yang lebih efisien, seperti pengelolaan pada data penyewaan,
                 pembayaran dan lainnya.
             </p>
         </div>

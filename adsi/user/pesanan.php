@@ -10,7 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $error_message = '';
 
-$sql = "SELECT p.pemesanan_id, DATE_FORMAT(p.tanggal_pemesanan, '%d %M') as formatted_date, p.jumlah_pembayaran, u.name 
+$sql = "SELECT p.pemesanan_id, DATE_FORMAT(p.tanggal_pemesanan, '%d %M') as formatted_date, p.jumlah_pembayaran, u.name, p.status
         FROM pemesanan p 
         JOIN unit u ON p.user_id = u.user_id
         WHERE p.user_id = ?";
@@ -50,6 +50,7 @@ $result = $stmt->get_result();
             <th>Tanggal</th>
             <th>Gedung</th>
             <th>Harga</th>
+            <th>Status</th>
             <th></th>
             <th></th>
         </tr>
@@ -86,11 +87,11 @@ $result = $stmt->get_result();
                 echo "<td>" . $building . "</td>";
 
                 echo "<td>Rp. " . number_format($row["jumlah_pembayaran"], 0, ',', '.') . ",-</td>";
-                echo '<td><i class="fas fa-check"></i></td>';
-                echo '<td><i class="fas fa-times"></i></td>';
+                echo "<td>" . htmlspecialchars($row["status"]) . "</td>";
+                echo '<td><a href="delete.php?pemesanan_id=' . $row["pemesanan_id"] . '&tanggal_pemesanan=' . $row["formatted_date"] . '&jumlah_pembayaran=' . $row["jumlah_pembayaran"] . '&status=' . $row["status"] . '"><i class="fas fa-times">X</i></a></td>';
                 echo "</tr>";
                 
-                $counter++; // Inkrementasi variabel penghitung
+                $counter++;
             }
         } else {
             echo "<tr><td colspan='7'>No records found</td></tr>";

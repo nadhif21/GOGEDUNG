@@ -10,6 +10,7 @@ if (!isset($_SESSION['user_id'])) {
 $_SESSION['pemesanan_id'] = 1;
 
 $sql = "SELECT * FROM gedung WHERE pemesanan_id = 1";
+
 $result = $koneksi->query($sql);
 ?>
 

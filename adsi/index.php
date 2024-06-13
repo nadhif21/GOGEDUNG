@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         switch ($data['level']) {
             case "admin":
-                header("location:user/homepage.php");
+                header("location:admin/pembayaran.php");
                 break;
             case "user":
                 header("location:user/homepage.php");

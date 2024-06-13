@@ -1,0 +1,33 @@
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid black;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+img {
+    border-radius: 50%;
+}
+
+td i {
+    font-size: 1.5em;
+}
+
+i.fas.fa-check {
+    color: green;
+}
+
+i.fas.fa-times {
+    color: red;
+}

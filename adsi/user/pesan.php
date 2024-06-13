@@ -30,6 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nomor_kartu = $_POST['nomor_kartu'];
     $tanggal_kadaluarsa = $_POST['tanggal_kadaluarsa'];
     $jumlah_pembayaran = $harga;
+    $status = "proses";
 
     $stmt_check = $koneksi->prepare("SELECT COUNT(*) FROM pemesanan WHERE pemesanan_id = ? AND tanggal_pemesanan = ?");
     $stmt_check->bind_param("is", $pemesanan_id, $tanggal_pemesanan);
@@ -41,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     if ($count > 0) {
         $error_message = "Tanggal pemesanan sudah ada untuk pemesanan ID ini.";
     } else {
-        $stmt = $koneksi->prepare("INSERT INTO pemesanan (pemesanan_id, user_id, tanggal_pemesanan, nama_kartu, nomor_kartu, tanggal_kadaluarsa, jumlah_pembayaran) VALUES (?, ?, ?, ?, ?, ?, ?)");
-        $stmt->bind_param("iissssd", $pemesanan_id, $user_id, $tanggal_pemesanan, $nama_kartu, $nomor_kartu, $tanggal_kadaluarsa, $jumlah_pembayaran);
+        $stmt = $koneksi->prepare("INSERT INTO pemesanan (pemesanan_id, user_id, tanggal_pemesanan, nama_kartu, nomor_kartu, tanggal_kadaluarsa, jumlah_pembayaran, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
+        $stmt->bind_param("iissssds", $pemesanan_id, $user_id, $tanggal_pemesanan, $nama_kartu, $nomor_kartu, $tanggal_kadaluarsa, $jumlah_pembayaran, $status);
 
         if ($stmt->execute()) {
             header("Location: afterpayment.php");

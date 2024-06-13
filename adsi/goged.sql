@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 30, 2024 at 04:59 AM
+-- Generation Time: Jun 13, 2024 at 04:41 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -60,17 +60,18 @@ CREATE TABLE `pemesanan` (
   `nama_kartu` varchar(100) NOT NULL,
   `nomor_kartu` varchar(20) NOT NULL,
   `tanggal_kadaluarsa` date NOT NULL,
-  `jumlah_pembayaran` decimal(10,2) NOT NULL
+  `jumlah_pembayaran` decimal(10,2) NOT NULL,
+  `status` varchar(7) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`pemesanan_id`, `user_id`, `tanggal_pemesanan`, `nama_kartu`, `nomor_kartu`, `tanggal_kadaluarsa`, `jumlah_pembayaran`) VALUES
-(2, 1, '2024-05-01', 'adhit', '2104553', '2024-05-30', 1000000.00),
-(4, 1, '2024-05-01', 'adhit', '1321321', '2024-05-30', 1000000.00),
-(1, 1, '2024-05-01', 'adhit', '1321321', '2024-05-30', 1000000.00);
+INSERT INTO `pemesanan` (`pemesanan_id`, `user_id`, `tanggal_pemesanan`, `nama_kartu`, `nomor_kartu`, `tanggal_kadaluarsa`, `jumlah_pembayaran`, `status`) VALUES
+(1, 7, '2024-07-06', 'sad', '12313', '2024-06-10', 1000000.00, 'gagal'),
+(1, 8, '2024-06-10', 'asfd', '2313', '2024-06-27', 1000000.00, 'proses'),
+(4, 8, '2024-06-29', 'ahlan', 'wqfwaf', '2024-07-06', 1000000.00, 'proses');
 
 -- --------------------------------------------------------
 
@@ -92,12 +93,13 @@ CREATE TABLE `unit` (
 --
 
 INSERT INTO `unit` (`user_id`, `name`, `email`, `password`, `level`, `reset_token`) VALUES
-(1, 'nadhif', 'nadhif21april@gmail.com', 'adh', 'user', 0),
+(1, 'nadhif', 'nadhif21april@gmail.com', 'adh', 'admin', 0),
 (7, 'anggie armelia', 'anggie@gmail.com', '123', 'user', 0),
 (8, 'Devano M', 'devano@gmail.com', '321', 'user', 0),
 (9, 'iqbal sepong', 'iqbal@gmail.com', '123', 'user', 0),
 (10, 'riski rasid', '123@gmail.com', '321', 'user', 0),
-(11, 'tes tis', 'tes@gsss.com', 'adf', 'user', 0);
+(11, 'tes tis', 'tes@gsss.com', 'adf', 'user', 0),
+(12, 'ahlan gtg', 'ahlan@gmail.com', '123', 'user', 0);
 
 --
 -- Indexes for dumped tables
@@ -123,7 +125,7 @@ ALTER TABLE `unit`
 -- AUTO_INCREMENT for table `unit`
 --
 ALTER TABLE `unit`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

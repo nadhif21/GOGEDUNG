@@ -29,27 +29,27 @@
     </section>
 
     <section class="containercontent">
-    <div class="grid">
-        <div class="gedungdance" >
-        <img src="../assets/image/gedungdance.png" alt="Image 1" class="gallery-image">
-        <a href="detaildance.php">gedung dance</a>
+        <div class="grid">
+            <div class="gedungdance">
+                <img src="../assets/image/gedungdance.png" alt="Image 1" class="gallery-image">
+                <a href="detaildance.php">gedung dance</a>
+            </div>
+            <div class="gedungolahraga">
+                <img src="../assets/image/gedungolahraga.png" alt="Image 2" class="gallery-image">
+                <a href="detailolahraga.php">gedung olahraga</a>
+            </div>
+            <div class="gedunggym">
+                <img src="../assets/image/gedunggym.png" alt="Image 3" class="gallery-image">
+                <a href="detailgym.php">gedung gym</a>
+            </div>
+            <div class="gedungpesta">
+                <img src="../assets/image/gedungpesta.png" alt="Image 4" class="gallery-image">
+                <a href="detailpesta.php">gedung pesta</a>
+            </div>
         </div>
-        <div class="gedungolahraga">
-        <img src="../assets/image/gedungolahraga.png" alt="Image 2" class="gallery-image">
-        <a href="detailolahraga.php">gedung olahraga</a>
-        </div>
-        <div class="gedunggym">
-        <img src="../assets/image/gedunggym.png" alt="Image 3" class="gallery-image">
-        <a href="detailgym.php">gedung gym</a>
-        </div>
-        <div class="gedungpesta">
-        <img src="../assets/image/gedungpesta.png" alt="Image 4" class="gallery-image">
-        <a href="detailpesta.php">gedung pesta</a>
-    </div>
-    </div>
-</section>
+    </section>
 
-<footer class="footer">
+    <footer class="footer">
         <div class="footer-container">
             <div class="footer-column">
                 <img src="../assets/image/logo.jpg" alt="Logo" class="footer-logo">
@@ -86,4 +86,5 @@
     </footer>
 
 </body>
+
 </html>

@@ -19,7 +19,7 @@
                 <li><a href="homepage.php">MAIN</a></li>
                 <li><a href="cari.php" class="active">CARI</a></li>
                 <li><a href="contact.php">CONTACTS</a></li>
-                <li><a href="permintaan.php">PERMINTAAAN</a></li>
+                <li><a href="permintaan.php">PERMINTAAN</a></li>
             </ul>
         </nav>
     </header>
